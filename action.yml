@@ -1,11 +1,14 @@
 name: 'Telegram Message Notify'
 description: 'Sending a Telegram message'
-author: 'Bo-Yi Wu & Mert Karabulut'
+author: 'Bo-Yi Wu'
+
 inputs:
   to:
     description: 'telegram user'
+    required: true
   token:
     description: 'telegram token'
+    required: true
   message:
     description: 'telegram message'
   message_file:
@@ -36,30 +39,23 @@ inputs:
     description: 'disables link previews for links in this message'
   disable_notification:
     description: 'disables notifications for this message, supports sending a message without notification,'
+
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
-    - name: "Send Telegram Message"
-      run: $GITHUB_ACTION_PATH/entrypoint.sh
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Download drone-telegram binary
+      run: |
+        curl -L -o /bin/drone-telegram https://github.com/appleboy/drone-telegram/releases/download/v1.3.10/drone-telegram-v1.3.10-darwin-amd64
+        chmod +x /bin/drone-telegram
+
+    - name: Run Telegram Notify Script
       shell: bash
-      env:
-        INPUT_TO: ${{ inputs.to }}
-        INPUT_TOKEN: ${{ inputs.token }}
-        INPUT_MESSAGE: ${{ inputs.message }}
-        INPUT_MESSAGE_FILE: ${{ inputs.message_file }}
-        INPUT_SOCKS5: ${{ inputs.socks5 }}
-        INPUT_PHOTO: ${{ inputs.photo }}
-        INPUT_DOCUMENT: ${{ inputs.document }}
-        INPUT_STICKER: ${{ inputs.sticker }}
-        INPUT_AUDIO: ${{ inputs.audio }}
-        INPUT_VOICE: ${{ inputs.voice }}
-        INPUT_LOCATION: ${{ inputs.location }}
-        INPUT_VENUE: ${{ inputs.venue }}
-        INPUT_VIDEO: ${{ inputs.video }}
-        INPUT_DEBUG: ${{ inputs.debug }}
-        INPUT_FORMAT: ${{ inputs.format }}
-        INPUT_DISABLE_WEB_PAGE_PREVIEW: ${{ inputs.disable_web_page_preview }}
-        INPUT_DISABLE_NOTIFICATION: ${{ inputs.disable_notification }}
+      run: |
+        chmod +x $GITHUB_WORKSPACE/entrypoint.sh
+        $GITHUB_WORKSPACE/entrypoint.sh ${{ inputs.message }}
 
 branding:
   icon: 'message-square'
