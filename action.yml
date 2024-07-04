@@ -1,6 +1,6 @@
 name: 'Telegram Message Notify'
 description: 'Sending a Telegram message'
-author: 'Bo-Yi Wu'
+author: 'Bo-Yi Wu & Mert Karabulut'
 inputs:
   to:
     description: 'telegram user'
@@ -37,8 +37,29 @@ inputs:
   disable_notification:
     description: 'disables notifications for this message, supports sending a message without notification,'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "composite"
+  steps:
+    - name: "Send Telegram Message"
+      run: $GITHUB_ACTION_PATH/entrypoint.sh
+      shell: bash
+      env:
+        INPUT_TO: ${{ inputs.to }}
+        INPUT_TOKEN: ${{ inputs.token }}
+        INPUT_MESSAGE: ${{ inputs.message }}
+        INPUT_MESSAGE_FILE: ${{ inputs.message_file }}
+        INPUT_SOCKS5: ${{ inputs.socks5 }}
+        INPUT_PHOTO: ${{ inputs.photo }}
+        INPUT_DOCUMENT: ${{ inputs.document }}
+        INPUT_STICKER: ${{ inputs.sticker }}
+        INPUT_AUDIO: ${{ inputs.audio }}
+        INPUT_VOICE: ${{ inputs.voice }}
+        INPUT_LOCATION: ${{ inputs.location }}
+        INPUT_VENUE: ${{ inputs.venue }}
+        INPUT_VIDEO: ${{ inputs.video }}
+        INPUT_DEBUG: ${{ inputs.debug }}
+        INPUT_FORMAT: ${{ inputs.format }}
+        INPUT_DISABLE_WEB_PAGE_PREVIEW: ${{ inputs.disable_web_page_preview }}
+        INPUT_DISABLE_NOTIFICATION: ${{ inputs.disable_notification }}
 
 branding:
   icon: 'message-square'

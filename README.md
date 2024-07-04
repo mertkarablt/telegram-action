@@ -4,7 +4,7 @@
 
 ![notification](./images/telegram-notification.png)
 
-[![Actions Status](https://github.com/appleboy/telegram-action/workflows/telegram%20message/badge.svg)](https://github.com/appleboy/telegram-action/actions)
+[![Actions Status](https://github.com/mertkarablt/telegram-action/workflows/telegram%20message/badge.svg)](https://github.com/mertkarablt/telegram-action/actions)
 
 ## Usage
 
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: send telegram message on push
-        uses: appleboy/telegram-action@master
+        uses: mertkarablt/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -39,7 +39,7 @@ Remove `args` to send the default message.
 
 ```yml
 - name: send default message
-  uses: appleboy/telegram-action@master
+  uses: mertkarablt/telegram-action@master
   with:
     to: ${{ secrets.TELEGRAM_TO }}
     token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -72,7 +72,7 @@ send photo message:
 ```yml
 - uses: actions/checkout@master
 - name: send photo message
-  uses: appleboy/telegram-action@master
+  uses: mertkarablt/telegram-action@master
   with:
     to: ${{ secrets.TELEGRAM_TO }}
     token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -85,7 +85,7 @@ send location message:
 
 ```yml
 - name: send location message
-  uses: appleboy/telegram-action@master
+  uses: mertkarablt/telegram-action@master
   with:
     to: ${{ secrets.TELEGRAM_TO }}
     token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -97,7 +97,7 @@ send message using custom proxy (support `http`, `https`, and `socks5`) like `so
 
 ```yml
 - name: send message using socks5 proxy URL
-  uses: appleboy/telegram-action@master
+  uses: mertkarablt/telegram-action@master
   with:
     to: ${{ secrets.TELEGRAM_TO }}
     token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -132,15 +132,15 @@ See the result: (get chat id like `65382999`)
           "id": 65382999,
           "is_bot": false,
           "first_name": "Bo-Yi",
-          "last_name": "Wu (appleboy)",
-          "username": "appleboy46",
+          "last_name": "Wu (mertkarablt)",
+          "username": "mertkarablt46",
           "language_code": "en"
         },
         "chat": {
           "id": 65382999,
           "first_name": "Bo-Yi",
-          "last_name": "Wu (appleboy)",
-          "username": "appleboy46",
+          "last_name": "Wu (mertkarablt)",
+          "username": "mertkarablt46",
           "type": "private"
         },
         "date": 1550333434,
