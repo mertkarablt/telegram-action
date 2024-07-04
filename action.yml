@@ -65,8 +65,8 @@ runs:
     - name: Run Telegram Notify Script
       shell: bash
       run: |
-        chmod +x $GITHUB_WORKSPACE/entrypoint.sh
-        $GITHUB_WORKSPACE/entrypoint.sh ${{ inputs.message }}
+        chmod +x $GITHUB_ACTION_PATH/entrypoint.sh
+        $GITHUB_ACTION_PATH/entrypoint.sh
 
 branding:
   icon: 'message-square'
