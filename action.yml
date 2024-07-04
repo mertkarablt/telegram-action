@@ -47,6 +47,7 @@ runs:
       uses: actions/checkout@v4
 
     - name: Download drone-telegram binary
+      shell: bash
       run: |
         curl -L -o /bin/drone-telegram https://github.com/appleboy/drone-telegram/releases/download/v1.3.10/drone-telegram-v1.3.10-darwin-amd64
         chmod +x /bin/drone-telegram
